@@ -1,5 +1,6 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { projects } from '../data/projects'
+import ProjectCard from './projects/ProjectCard'
 
 type SortOrder = 'latest' | 'oldest'
 type ProjectFilter = 'all' | 'completed' | 'in-progress'
@@ -30,10 +31,6 @@ function ProjectsSection() {
     return filteredAndSortedProjects.slice(start, start + PAGE_SIZE)
   }, [filteredAndSortedProjects, page])
 
-  useEffect(() => {
-    setPage(1)
-  }, [sortOrder, projectFilter])
-
   return (
     <section id="projects" className="snap-section section projects-section" aria-labelledby="projects-title">
       <div className="section-inner">
@@ -47,14 +44,20 @@ function ProjectsSection() {
             <button
               type="button"
               className={sortOrder === 'latest' ? 'is-active' : ''}
-              onClick={() => setSortOrder('latest')}
+              onClick={() => {
+                setSortOrder('latest')
+                setPage(1)
+              }}
             >
               최신순
             </button>
             <button
               type="button"
               className={sortOrder === 'oldest' ? 'is-active' : ''}
-              onClick={() => setSortOrder('oldest')}
+              onClick={() => {
+                setSortOrder('oldest')
+                setPage(1)
+              }}
             >
               오래된 순
             </button>
@@ -65,7 +68,10 @@ function ProjectsSection() {
           <button
             type="button"
             className={`panel overview-card overview-card-compact ${projectFilter === 'all' ? 'is-active' : ''}`}
-            onClick={() => setProjectFilter('all')}
+            onClick={() => {
+              setProjectFilter('all')
+              setPage(1)
+            }}
           >
             <p className="overview-label">전체 프로젝트</p>
             <p className="overview-value">{totalProjects}건</p>
@@ -73,7 +79,10 @@ function ProjectsSection() {
           <button
             type="button"
             className={`panel overview-card overview-card-compact ${projectFilter === 'completed' ? 'is-active' : ''}`}
-            onClick={() => setProjectFilter('completed')}
+            onClick={() => {
+              setProjectFilter('completed')
+              setPage(1)
+            }}
           >
             <p className="overview-label">완료 프로젝트</p>
             <p className="overview-value">{completedProjects}건</p>
@@ -81,7 +90,10 @@ function ProjectsSection() {
           <button
             type="button"
             className={`panel overview-card overview-card-compact ${projectFilter === 'in-progress' ? 'is-active' : ''}`}
-            onClick={() => setProjectFilter('in-progress')}
+            onClick={() => {
+              setProjectFilter('in-progress')
+              setPage(1)
+            }}
           >
             <p className="overview-label">진행 중 프로젝트</p>
             <p className="overview-value">{inProgressProjects}건</p>
@@ -90,52 +102,7 @@ function ProjectsSection() {
 
         <div className="project-grid">
           {visibleProjects.map((project) => (
-            <article key={project.id} className="project-card panel">
-              <img
-                src={project.thumbnail}
-                alt={`${project.title} thumbnail`}
-                loading="lazy"
-                decoding="async"
-                width={640}
-                height={360}
-              />
-
-              <div className="project-content">
-                <div className="project-title-row">
-                  <h3>{project.title}</h3>
-                  <span className={`status-tag ${project.status === 'in-progress' ? 'is-progress' : 'is-completed'}`}>
-                    {project.status === 'in-progress' ? '진행 중' : '완료'}
-                  </span>
-                </div>
-                <p className="project-summary">{project.summary}</p>
-
-                <dl>
-                  <dt>기간</dt>
-                  <dd>{project.period}</dd>
-
-                  <dt>사용 기술</dt>
-                  <dd>{project.techStack.join(', ')}</dd>
-
-                  <dt>담당 영역</dt>
-                  <dd>{project.role}</dd>
-
-                  <dt>주요 기능</dt>
-                  <dd>{project.description}</dd>
-                </dl>
-              </div>
-
-              <div className="project-actions">
-                <a href={project.githubUrl} target="_blank" rel="noreferrer" className="link-button">
-                  GitHub
-                  <span className="link-arrow" aria-hidden="true">
-                    ↗
-                  </span>
-                </a>
-                <a href={project.detailUrl} target="_blank" rel="noreferrer" className="link-button secondary">
-                  Detail
-                </a>
-              </div>
-            </article>
+            <ProjectCard key={project.id} project={project} />
           ))}
         </div>
 

@@ -1,0 +1,59 @@
+import type { Project } from '../../types/project'
+import { getProjectDetailHash } from '../../lib/routes'
+
+type ProjectCardProps = {
+  project: Project
+}
+
+function ProjectCard({ project }: ProjectCardProps) {
+  return (
+    <article className="project-card panel">
+      <img
+        src={project.thumbnail}
+        alt={`${project.title} thumbnail`}
+        loading="lazy"
+        decoding="async"
+        width={640}
+        height={360}
+      />
+
+      <div className="project-content">
+        <div className="project-title-row">
+          <h3>{project.title}</h3>
+          <span className={`status-tag ${project.status === 'in-progress' ? 'is-progress' : 'is-completed'}`}>
+            {project.status === 'in-progress' ? '진행 중' : '완료'}
+          </span>
+        </div>
+        <p className="project-summary">{project.summary}</p>
+
+        <dl>
+          <dt>기간</dt>
+          <dd>{project.period}</dd>
+
+          <dt>사용 기술</dt>
+          <dd>{project.techStack.join(', ')}</dd>
+
+          <dt>담당 영역</dt>
+          <dd>{project.role}</dd>
+
+          <dt>주요 기능</dt>
+          <dd>{project.description}</dd>
+        </dl>
+      </div>
+
+      <div className="project-actions">
+        <a href={project.githubUrl} target="_blank" rel="noreferrer" className="link-button">
+          GitHub
+          <span className="link-arrow" aria-hidden="true">
+            ↗
+          </span>
+        </a>
+        <a href={getProjectDetailHash(project.slug)} className="link-button secondary">
+          Detail
+        </a>
+      </div>
+    </article>
+  )
+}
+
+export default ProjectCard
