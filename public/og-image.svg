@@ -1,0 +1,14 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F9F4E8"/>
+      <stop offset="1" stop-color="#E8F5EE"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="220" cy="120" r="160" fill="#FFF2D1"/>
+  <circle cx="1010" cy="520" r="220" fill="#D4EFE3"/>
+  <text x="96" y="284" fill="#1D2A24" font-family="Pretendard, sans-serif" font-size="72" font-weight="700">Lee Chorong</text>
+  <text x="96" y="358" fill="#0F766E" font-family="Pretendard, sans-serif" font-size="52" font-weight="600">Portfolio</text>
+  <text x="96" y="430" fill="#506057" font-family="Pretendard, sans-serif" font-size="30" font-weight="500">React + TypeScript · Backend-focused Developer</text>
+</svg>
