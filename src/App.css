@@ -999,6 +999,7 @@ button {
   overflow-y: auto;
   display: grid;
   gap: 0.95rem;
+  align-content: start;
   padding: 0.1rem 0.2rem 0.1rem 0.85rem;
 }
 
@@ -1190,6 +1191,8 @@ button {
 .detail-sections {
   display: grid;
   gap: 0.9rem;
+  grid-auto-rows: max-content;
+  align-content: start;
 }
 
 .detail-toc {
