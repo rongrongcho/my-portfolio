@@ -6,6 +6,8 @@ export type ProjectDetailSection = {
 }
 
 export type ProjectStatus = 'completed' | 'in-progress'
+export type ProjectContext = 'company' | 'personal' | 'team-study' | 'freelance'
+export type CollaborationType = 'solo' | 'team'
 
 export type ProjectSummary = {
   id: number
@@ -19,6 +21,9 @@ export type ProjectSummary = {
   githubUrl: string
   thumbnail: string
   status: ProjectStatus
+  projectContext: ProjectContext
+  collaborationType: CollaborationType
+  teamSize?: number
 }
 
 export type ProjectDetail = {

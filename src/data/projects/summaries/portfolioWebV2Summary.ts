@@ -12,4 +12,7 @@ export const portfolioWebV2Summary: ProjectSummary = {
   githubUrl: 'https://github.com/',
   thumbnail: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1200&q=80',
   status: 'in-progress',
+  projectContext: 'personal',
+  collaborationType: 'solo',
+  teamSize: 1,
 }

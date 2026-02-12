@@ -12,4 +12,6 @@ export const teamCollaborationPortalSummary: ProjectSummary = {
   githubUrl: 'https://github.com/',
   thumbnail: 'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=80',
   status: 'completed',
+  projectContext: 'company',
+  collaborationType: 'team',
 }

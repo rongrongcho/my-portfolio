@@ -338,8 +338,8 @@
   }
 
   .detail-view-tabs {
-    width: 240px;
-    max-width: 240px;
+    width: 220px;
+    max-width: 220px;
   }
 
   .detail-view-tabs-header {
@@ -354,8 +354,8 @@
 
 @media (max-width: 420px) {
   .detail-view-tabs {
-    width: 216px;
-    max-width: 216px;
+    width: 196px;
+    max-width: 196px;
   }
 
   .detail-view-tab {

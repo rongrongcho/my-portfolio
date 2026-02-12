@@ -5,7 +5,29 @@ type ProjectCardProps = {
   project: ProjectSummary
 }
 
+function formatProjectCategory(project: ProjectSummary) {
+  const contextLabel =
+    project.projectContext === 'company'
+      ? '실무'
+      : project.projectContext === 'personal'
+        ? '사이드'
+        : project.projectContext === 'team-study'
+          ? '스터디'
+          : '프리랜스'
+
+  const collaborationLabel = project.collaborationType === 'solo' ? '개인' : '팀'
+
+  if (project.collaborationType === 'team' && project.teamSize) {
+    return `${contextLabel}-${collaborationLabel} ${project.teamSize}명`
+  }
+
+  return `${contextLabel}-${collaborationLabel}`
+}
+
 function ProjectCard({ project }: ProjectCardProps) {
+  const projectCategory = formatProjectCategory(project)
+  const projectStatus = project.status === 'in-progress' ? '진행 중' : '완료'
+
   return (
     <article className="project-card panel">
       <img
@@ -20,9 +42,12 @@ function ProjectCard({ project }: ProjectCardProps) {
       <div className="project-content">
         <div className="project-title-row">
           <h3>{project.title}</h3>
-          <span className={`status-tag ${project.status === 'in-progress' ? 'is-progress' : 'is-completed'}`}>
-            {project.status === 'in-progress' ? '진행 중' : '완료'}
-          </span>
+          <div className="project-badges">
+            <span className="status-tag is-category">{projectCategory}</span>
+            <span className={`status-tag ${project.status === 'in-progress' ? 'is-progress' : 'is-completed'}`}>
+              {projectStatus}
+            </span>
+          </div>
         </div>
         <p className="project-summary">{project.summary}</p>
 

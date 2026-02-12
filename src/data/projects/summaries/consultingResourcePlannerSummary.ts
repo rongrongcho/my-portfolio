@@ -12,4 +12,6 @@ export const consultingResourcePlannerSummary: ProjectSummary = {
   githubUrl: 'https://github.com/',
   thumbnail: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80',
   status: 'completed',
+  projectContext: 'company',
+  collaborationType: 'team',
 }

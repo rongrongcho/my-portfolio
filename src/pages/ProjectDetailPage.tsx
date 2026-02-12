@@ -6,6 +6,29 @@ type ProjectDetailPageProps = {
   slug: string
 }
 
+function formatProjectCategory(project: {
+  projectContext: 'company' | 'personal' | 'team-study' | 'freelance'
+  collaborationType: 'solo' | 'team'
+  teamSize?: number
+}) {
+  const contextLabel =
+    project.projectContext === 'company'
+      ? '실무'
+      : project.projectContext === 'personal'
+        ? '사이드'
+        : project.projectContext === 'team-study'
+          ? '스터디'
+          : '프리랜스'
+
+  const collaborationLabel = project.collaborationType === 'solo' ? '개인' : '팀'
+
+  if (project.collaborationType === 'team' && project.teamSize) {
+    return `${contextLabel}-${collaborationLabel} ${project.teamSize}명`
+  }
+
+  return `${contextLabel}-${collaborationLabel}`
+}
+
 function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
   const project = getProjectBySlug(slug)
   const [sectionOpenMap, setSectionOpenMap] = useState<Record<string, boolean>>({})
@@ -135,7 +158,7 @@ function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
             aria-selected={!isDemoOpen}
             onClick={activateDetailView}
           >
-            프로젝트 내용
+            상세
           </button>
           <button
             type="button"
@@ -145,7 +168,7 @@ function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
             onClick={activateDemoView}
             disabled={demoImages.length === 0}
           >
-            데모 뷰어
+            갤러리
           </button>
         </div>
       </header>
@@ -153,7 +176,12 @@ function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
       <main className="detail-main detail-main-split">
         <aside className="detail-sidebar">
           <div className="detail-sidebar-inner">
-            <p className="detail-kicker">PROJECT DETAIL</p>
+            <div className="detail-kicker-row">
+              <p className="detail-kicker">PROJECT DETAIL</p>
+              <div className="detail-project-badges">
+                <span className="status-tag is-category">{formatProjectCategory(project)}</span>
+              </div>
+            </div>
             <h1>{project.title}</h1>
             <p className="detail-summary">{project.summary}</p>
 

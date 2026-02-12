@@ -3,7 +3,7 @@ import { getProjectStats, projectSummaries } from '../data/projects/projectDataR
 import ProjectCard from './projects/ProjectCard'
 
 type SortOrder = 'latest' | 'oldest'
-type ProjectFilter = 'all' | 'completed' | 'in-progress'
+type ProjectFilter = 'all' | 'company' | 'personal'
 
 const PAGE_SIZE = 3
 
@@ -11,13 +11,14 @@ function ProjectsSection() {
   const [sortOrder, setSortOrder] = useState<SortOrder>('latest')
   const [projectFilter, setProjectFilter] = useState<ProjectFilter>('all')
   const [page, setPage] = useState(1)
-  const { total: totalProjects, completed: completedProjects, inProgress: inProgressProjects } = getProjectStats()
+  const { total: totalProjects } = getProjectStats()
+  const companyProjects = projectSummaries.filter((project) => project.projectContext === 'company').length
+  const personalProjects = projectSummaries.filter((project) => project.projectContext === 'personal').length
 
   const filteredAndSortedProjects = useMemo(() => {
-    const filtered =
-      projectFilter === 'all'
-        ? projectSummaries
-        : projectSummaries.filter((project) => project.status === projectFilter)
+    const filtered = projectFilter === 'all'
+      ? projectSummaries
+      : projectSummaries.filter((project) => project.projectContext === projectFilter)
 
     const sorted = [...filtered]
     sorted.sort((a, b) => (sortOrder === 'latest' ? b.id - a.id : a.id - b.id))
@@ -78,25 +79,25 @@ function ProjectsSection() {
           </button>
           <button
             type="button"
-            className={`panel overview-card overview-card-compact ${projectFilter === 'completed' ? 'is-active' : ''}`}
+            className={`panel overview-card overview-card-compact ${projectFilter === 'company' ? 'is-active' : ''}`}
             onClick={() => {
-              setProjectFilter('completed')
+              setProjectFilter('company')
               setPage(1)
             }}
           >
-            <p className="overview-label">완료 프로젝트</p>
-            <p className="overview-value">{completedProjects}건</p>
+            <p className="overview-label">실무 프로젝트</p>
+            <p className="overview-value">{companyProjects}건</p>
           </button>
           <button
             type="button"
-            className={`panel overview-card overview-card-compact ${projectFilter === 'in-progress' ? 'is-active' : ''}`}
+            className={`panel overview-card overview-card-compact ${projectFilter === 'personal' ? 'is-active' : ''}`}
             onClick={() => {
-              setProjectFilter('in-progress')
+              setProjectFilter('personal')
               setPage(1)
             }}
           >
-            <p className="overview-label">진행 중 프로젝트</p>
-            <p className="overview-value">{inProgressProjects}건</p>
+            <p className="overview-label">사이드 프로젝트</p>
+            <p className="overview-value">{personalProjects}건</p>
           </button>
         </div>
 

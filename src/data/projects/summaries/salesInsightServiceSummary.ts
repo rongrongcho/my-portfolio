@@ -12,4 +12,6 @@ export const salesInsightServiceSummary: ProjectSummary = {
   githubUrl: 'https://github.com/',
   thumbnail: 'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?auto=format&fit=crop&w=1200&q=80',
   status: 'completed',
+  projectContext: 'company',
+  collaborationType: 'team',
 }
