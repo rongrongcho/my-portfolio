@@ -5,7 +5,9 @@ export type ProjectDetailSection = {
   highlights?: string[]
 }
 
-export type Project = {
+export type ProjectStatus = 'completed' | 'in-progress'
+
+export type ProjectSummary = {
   id: number
   slug: string
   title: string
@@ -16,8 +18,14 @@ export type Project = {
   description: string
   githubUrl: string
   thumbnail: string
+  status: ProjectStatus
+}
+
+export type ProjectDetail = {
+  slug: string
   demoImages: string[]
   demoCaptions: string[]
-  status: 'completed' | 'in-progress'
   detailSections: ProjectDetailSection[]
 }
+
+export type Project = ProjectSummary & ProjectDetail

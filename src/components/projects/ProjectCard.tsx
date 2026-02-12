@@ -1,8 +1,8 @@
-import type { Project } from '../../types/project'
+import type { ProjectSummary } from '../../types/project'
 import { getProjectDetailHash } from '../../lib/routes'
 
 type ProjectCardProps = {
-  project: Project
+  project: ProjectSummary
 }
 
 function ProjectCard({ project }: ProjectCardProps) {

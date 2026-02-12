@@ -1,0 +1,21 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  height: var(--footer-height);
+  border-top: 1px solid var(--line);
+  backdrop-filter: blur(8px);
+}
+
+.footer p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.footer-updated {
+  padding-left: 0.8rem;
+  border-left: 1px solid var(--line);
+}
+

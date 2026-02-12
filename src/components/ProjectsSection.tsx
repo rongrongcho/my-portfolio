@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { projects } from '../data/projects'
+import { getProjectStats, projectSummaries } from '../data/projects/projectDataRepository'
 import ProjectCard from './projects/ProjectCard'
 
 type SortOrder = 'latest' | 'oldest'
@@ -11,13 +11,13 @@ function ProjectsSection() {
   const [sortOrder, setSortOrder] = useState<SortOrder>('latest')
   const [projectFilter, setProjectFilter] = useState<ProjectFilter>('all')
   const [page, setPage] = useState(1)
-  const totalProjects = projects.length
-  const completedProjects = projects.filter((project) => project.status === 'completed').length
-  const inProgressProjects = projects.filter((project) => project.status === 'in-progress').length
+  const { total: totalProjects, completed: completedProjects, inProgress: inProgressProjects } = getProjectStats()
 
   const filteredAndSortedProjects = useMemo(() => {
     const filtered =
-      projectFilter === 'all' ? projects : projects.filter((project) => project.status === projectFilter)
+      projectFilter === 'all'
+        ? projectSummaries
+        : projectSummaries.filter((project) => project.status === projectFilter)
 
     const sorted = [...filtered]
     sorted.sort((a, b) => (sortOrder === 'latest' ? b.id - a.id : a.id - b.id))

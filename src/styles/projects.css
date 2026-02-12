@@ -1,0 +1,205 @@
+.project-overview {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.overview-card {
+  padding: 0.9rem 0.96rem;
+  background: rgba(255, 255, 255, 0.63);
+}
+
+.overview-label {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.overview-value {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #355a52;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.1rem;
+}
+
+.project-card {
+  display: grid;
+  height: 520px;
+  grid-template-rows: 198px minmax(0, 1fr) auto;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 32px rgba(25, 31, 28, 0.14);
+}
+
+.project-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-content {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  min-height: 0;
+  padding: 1.06rem;
+  overflow: hidden;
+}
+
+.project-content h3 {
+  margin: 0;
+  font-size: 1.12rem;
+}
+
+.project-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+.status-tag {
+  flex-shrink: 0;
+  border-radius: 999px;
+  padding: 0.2rem 0.58rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.status-tag.is-progress {
+  color: #0f766e;
+  background: rgba(15, 118, 110, 0.14);
+}
+
+.status-tag.is-completed {
+  color: #5f6c66;
+  background: rgba(80, 96, 87, 0.12);
+}
+
+.project-summary {
+  margin: 0.48rem 0 0.72rem;
+  font-size: 0.96rem;
+  color: var(--text-muted);
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.project-content dl {
+  margin: 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.28rem 0.45rem;
+  align-content: start;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.project-content dt {
+  font-weight: 700;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.project-content dd {
+  margin: 0;
+  line-height: 1.35;
+  font-size: 0.9rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.project-content dd:last-of-type {
+  display: -webkit-box;
+  white-space: normal;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.project-title-row h3 {
+  min-width: 0;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.project-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.62rem;
+  padding: 0 1.06rem 1.06rem;
+}
+
+.project-overview-compact {
+  gap: 0.56rem;
+  margin-top: -0.12rem;
+}
+
+.overview-card-compact {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgba(29, 42, 36, 0.08);
+  border-color: rgba(29, 42, 36, 0.08);
+  padding: 0.46rem 0.66rem;
+  background: rgba(255, 255, 255, 0.42);
+  cursor: pointer;
+  box-shadow: none;
+  transition: all 0.2s ease;
+}
+
+.overview-card-compact:hover {
+  border-color: rgba(15, 118, 110, 0.28);
+  background: rgba(255, 255, 255, 0.64);
+}
+
+.overview-card-compact.is-active {
+  border-color: rgba(15, 118, 110, 0.34);
+  background: rgba(15, 118, 110, 0.1);
+}
+
+.overview-card-compact:focus-visible {
+  outline: 2px solid rgba(15, 118, 110, 0.35);
+  outline-offset: 2px;
+}
+
+.empty-projects {
+  margin: 0.2rem 0 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.pager {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+}
+
+.pager p {
+  margin: 0;
+  min-width: 3.2rem;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.pager button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+

@@ -1,0 +1,88 @@
+.app-main {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  padding-top: 0.75rem;
+}
+
+.section {
+  height: 100%;
+  padding: 1.15rem 2.1rem 1rem;
+}
+
+.snap-section {
+  min-height: 100%;
+}
+
+.section-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1.08rem;
+  width: 100%;
+  height: 100%;
+  max-width: 1260px;
+  margin: 0 auto;
+}
+
+.section-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: clamp(1.72rem, 2.1vw, 2.22rem);
+}
+
+.section-heading p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.section-heading-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.summary-item {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0.78rem 0.92rem;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.summary-label {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.summary-value {
+  margin: 0.2rem 0 0;
+  font-size: 1.32rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.summary-value-compact {
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.panel {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--bg-card);
+  box-shadow: var(--shadow);
+}
+
+.card-panel {
+  padding: 1.14rem;
+}
+
