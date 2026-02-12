@@ -4,6 +4,7 @@ import { getHomeHash } from '../lib/routes'
 
 type ProjectDetailPageProps = {
   slug: string
+  initialView?: 'detail' | 'gallery'
 }
 
 function formatProjectCategory(project: {
@@ -29,7 +30,7 @@ function formatProjectCategory(project: {
   return `${contextLabel}-${collaborationLabel}`
 }
 
-function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
+function ProjectDetailPage({ slug, initialView }: ProjectDetailPageProps) {
   const project = getProjectBySlug(slug)
   const [sectionOpenMap, setSectionOpenMap] = useState<Record<string, boolean>>({})
   const [isOutlineOpen, setIsOutlineOpen] = useState(false)
@@ -51,6 +52,7 @@ function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
 
     return project.demoCaptions.length === demoImages.length ? project.demoCaptions : project.demoCaptions.concat(Array(Math.max(0, demoImages.length - project.demoCaptions.length)).fill(''))
   }, [project, demoImages])
+  const isCompanyProject = project?.projectContext === 'company'
 
   const isSectionOpen = (sectionId: string) => sectionOpenMap[sectionId] ?? true
 
@@ -102,6 +104,19 @@ function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
       window.removeEventListener('resize', onResize)
     }
   }, [])
+
+  useEffect(() => {
+    if (initialView !== 'gallery') {
+      return
+    }
+
+    if (demoImages.length === 0) {
+      return
+    }
+
+    setDemoIndex(0)
+    setIsDemoOpen(true)
+  }, [demoImages.length, initialView])
 
   useEffect(() => {
     if (!isDemoOpen) {
@@ -205,12 +220,14 @@ function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
             </div>
 
             <div className="detail-action-row">
-              <a href={project.githubUrl} target="_blank" rel="noreferrer" className="link-button detail-github-link">
-                GitHub
-                <span className="link-arrow" aria-hidden="true">
-                  ↗
-                </span>
-              </a>
+              {!isCompanyProject && (
+                <a href={project.githubUrl} target="_blank" rel="noreferrer" className="link-button detail-github-link">
+                  GitHub
+                  <span className="link-arrow" aria-hidden="true">
+                    ↗
+                  </span>
+                </a>
+              )}
             </div>
 
             <button

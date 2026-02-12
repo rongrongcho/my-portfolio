@@ -1,8 +1,9 @@
 export type HomeSectionId = 'profile' | 'projects' | 'career'
+export type ProjectDetailView = 'detail' | 'gallery'
 
 export type AppRoute =
   | { type: 'home'; section?: HomeSectionId }
-  | { type: 'project-detail'; slug: string }
+  | { type: 'project-detail'; slug: string; view?: ProjectDetailView }
 
 function stripHash(hash: string) {
   return hash.replace(/^#/, '')
@@ -15,10 +16,11 @@ export function parseAppRoute(hash: string): AppRoute {
     return { type: 'home' }
   }
 
-  const [base, slug] = clean.split('/').filter(Boolean)
+  const [base, slug, view] = clean.split('/').filter(Boolean)
 
   if (base === 'projects' && slug) {
-    return { type: 'project-detail', slug: decodeURIComponent(slug) }
+    const decodedView = view === 'gallery' ? 'gallery' : undefined
+    return { type: 'project-detail', slug: decodeURIComponent(slug), view: decodedView }
   }
 
   if (base === 'profile' || base === 'projects' || base === 'career') {
@@ -28,8 +30,9 @@ export function parseAppRoute(hash: string): AppRoute {
   return { type: 'home' }
 }
 
-export function getProjectDetailHash(slug: string) {
-  return `#/projects/${encodeURIComponent(slug)}`
+export function getProjectDetailHash(slug: string, view?: ProjectDetailView) {
+  const encodedSlug = encodeURIComponent(slug)
+  return view === 'gallery' ? `#/projects/${encodedSlug}/gallery` : `#/projects/${encodedSlug}`
 }
 
 export function getHomeHash(section?: HomeSectionId) {

@@ -24,7 +24,7 @@ function App() {
   }, [])
 
   if (route.type === 'project-detail') {
-    return <ProjectDetailPage slug={route.slug} />
+    return <ProjectDetailPage slug={route.slug} initialView={route.view} />
   }
 
   return <HomePage initialSection={route.section} />

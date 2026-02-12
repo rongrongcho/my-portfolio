@@ -27,6 +27,7 @@ function formatProjectCategory(project: ProjectSummary) {
 function ProjectCard({ project }: ProjectCardProps) {
   const projectCategory = formatProjectCategory(project)
   const projectStatus = project.status === 'in-progress' ? '진행 중' : '완료'
+  const isCompanyProject = project.projectContext === 'company'
 
   return (
     <article className="project-card panel">
@@ -67,12 +68,18 @@ function ProjectCard({ project }: ProjectCardProps) {
       </div>
 
       <div className="project-actions">
-        <a href={project.githubUrl} target="_blank" rel="noreferrer" className="link-button">
-          GitHub
-          <span className="link-arrow" aria-hidden="true">
-            ↗
-          </span>
-        </a>
+        {isCompanyProject ? (
+          <a href={getProjectDetailHash(project.slug, 'gallery')} className="link-button">
+            갤러리
+          </a>
+        ) : (
+          <a href={project.githubUrl} target="_blank" rel="noreferrer" className="link-button">
+            GitHub
+            <span className="link-arrow" aria-hidden="true">
+              ↗
+            </span>
+          </a>
+        )}
         <a href={getProjectDetailHash(project.slug)} className="link-button secondary">
           Detail
         </a>
