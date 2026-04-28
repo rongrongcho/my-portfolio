@@ -1,5 +1,5 @@
-export const emailAddress = 'mararongsya@gmail.com'
-export const phoneNumber = '010-0000-0000'
+export const emailAddress = 'crleeyi@gmail.com'
+export const phoneNumber = '010-3269-0268'
 
 export const personalInfo = [
   { label: '이름', value: ['이초롱 (Lee Chorong)'] },
@@ -29,10 +29,21 @@ export const privateInfo = [
   },
 ]
 
-export const profileLinks = [
+type ProfileLink =
+  | {
+      label: string
+      href: string
+      disabled?: false
+    }
+  | {
+      label: string
+      disabled: true
+    }
+
+export const profileLinks: ProfileLink[] = [
   { label: 'GitHub', href: 'https://github.com/' },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/' },
-  { label: 'Blog', href: 'https://velog.io/' },
+  { label: 'LinkedIn', disabled: true },
+  { label: 'Blog', disabled: true },
 ]
 
 export const profileHashtags = ['ERP백엔드', '문제해결형개발자', '데이터연동', 'API설계', '협업중심']

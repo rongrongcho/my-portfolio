@@ -157,14 +157,20 @@ function ProfileSection() {
             <article className="panel card-panel">
               <h3>바로가기</h3>
               <div className="external-links">
-                {profileLinks.map((link) => (
-                  <a key={link.label} href={link.href} target="_blank" rel="noreferrer" className="link-button">
-                    {link.label}
-                    <span className="link-arrow" aria-hidden="true">
-                      ↗
+                {profileLinks.map((link) =>
+                  link.disabled ? (
+                    <span key={link.label} className="link-button is-disabled" aria-disabled="true" title="준비 중">
+                      {link.label}
                     </span>
-                  </a>
-                ))}
+                  ) : (
+                    <a key={link.label} href={link.href} target="_blank" rel="noreferrer" className="link-button">
+                      {link.label}
+                      <span className="link-arrow" aria-hidden="true">
+                        ↗
+                      </span>
+                    </a>
+                  ),
+                )}
               </div>
             </article>
           </div>
